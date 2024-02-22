@@ -6,6 +6,7 @@ async function main() {
   await lock.waitForDeployment();
 
 
+}
 
 main().catch((error) => {
   console.error(error);
