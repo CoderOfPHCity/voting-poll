@@ -31,14 +31,17 @@ contract Votting {
         poll.title = _title;
         poll.id = _id;
         poll.description = _description;
+
+        pollArray.push(poll);
     }
 
     function candidatesToBeVoted(uint256 _id) public {
         require(!registered[msg.sender], "already registered");
+        require(msg.sender != address(0), "not a valid address");
         
-        if (!pollExists(_id)) {
-            revert POLL_EXIST();
-        }
+        // if (!pollExists(_id)) {
+        //     revert POLL_EXIST();
+        // }
         Poll storage poll = polls[_id];
         poll.candidates.push(msg.sender);
         poll.voted = true;
